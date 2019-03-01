@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+set -e
+
+db=$(twig diff-branch)
+mb=$(git merge-base "$db" HEAD)
+git diff "$mb"

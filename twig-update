@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+db=$(twig diff-branch)
+git merge "$db"
