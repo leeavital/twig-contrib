@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 
 db=$(twig diff-branch)
+if [[ -z "$db" ]]; then
+  echo "twig diff-branch is not set" 1>&2
+  exit 1
+fi
+
 git merge "$db"

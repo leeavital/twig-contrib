@@ -3,5 +3,11 @@
 set -e
 
 db=$(twig diff-branch)
+
+if [ -z "$db" ]; then
+  echo "twig diff-branch is not set" 1>&2
+  exit 1
+fi
+
 mb=$(git merge-base "$db" HEAD)
-git diff "$mb"
+git diff  "$mb" "$@"

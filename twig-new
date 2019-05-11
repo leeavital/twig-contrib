@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+default_branch=$(git config --get twig.default.branch)
+
+
+if [[ -z "$default_branch" ]]; then
+  echo "must set twig default-branch property"
+  echo "git config twig.default.branch <branch>"
+  exit 1
+fi
+
+name="$1"
+
+if [[ -z "$name" ]]; then
+  echo "first arg must be a branch name"
+  exit 1
+fi
+
+git fetch origin  "$default_branch"
+
+
+git checkout -b "$(whoami)/$name" "origin/$default_branch"
+
+twig diff-branch "origin/$default_branch"
